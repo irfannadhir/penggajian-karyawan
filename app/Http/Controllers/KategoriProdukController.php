@@ -14,8 +14,8 @@ class KategoriProdukController extends Controller
      */
     public function index()
     {
-        $kategori = KategoriProduk::all();
-        return view('pages.kategori.index', compact('kategori'));
+        $kategoris = KategoriProduk::all();
+        return view('pages.kategori.index', compact('kategoris'));
     }
 
     /**
