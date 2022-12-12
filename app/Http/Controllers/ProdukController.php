@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdukController extends Controller
 {
@@ -32,6 +33,9 @@ class ProdukController extends Controller
             'berat_produk'       => $request->berat_produk,
             'keterangan'         => $request->keterangan,
         ]);
+
+        Alert::success('Congrats', 'Berhasil menyimpan produk');
+        return redirect('produk');
     }
 
     public function update(Request $request, Produk $produk)
@@ -53,10 +57,15 @@ class ProdukController extends Controller
             'berat_produk'       => $request->berat_produk,
             'keterangan'         => $request->keterangan,
         ]);
+
+        Alert::success('Congrats', 'Berhasil mengubah produk');
+        return redirect('produk');
     }
 
     public function delete(Produk $produk)
     {
         $produk->delete();
+        Alert::success('Congrats', 'Berhasil menghapus produk');
+        return redirect('produk');
     }
 }

@@ -60,10 +60,6 @@
                             <li class=""><a href="index.html" class="">Default</a></li>
                             <li class=""><a href="dashboard-ecommerce.html" class="">Ecommerce</a></li>
                             <li class=""><a href="dashboard-crm.html" class="">CRM</a></li>
-                            <li class=""><a href="dashboard-analytics.html" class="">Analytics</a></li>
-                            <li class=""><a href="dashboard-crypto.html" class="">Crypto<span
-                                        class="pcoded-badge label label-danger">NEW</span></a></li>
-                            <li class=""><a href="dashboard-project.html" class="">Project</a></li>
                         </ul>
                     </li>
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark"
@@ -198,9 +194,10 @@
                     }
                 })
                 .then(res => window.location.replace('{{ route('login') }}'))
-                .catch(res => alert(res))
+                .catch(res => console.error(res);)
         })
     </script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KategoriProduk;
 use Illuminate\Http\Request;
+use App\Models\KategoriProduk;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KategoriProdukController extends Controller
 {
@@ -43,6 +44,9 @@ class KategoriProdukController extends Controller
         KategoriProduk::create([
             'nama_kategori' => $request->nama_kategori
         ]);
+
+        Alert::success('Congrats', 'Berhasil menambahkan kategori produk');
+        return redirect('kategori-produk');
     }
 
     /**
@@ -83,6 +87,9 @@ class KategoriProdukController extends Controller
         $kategoriProduk->update([
             'nama_kategori' => $request->nama_kategori
         ]);
+
+        Alert::success('Congrats', 'Berhasil mengubah kategori produk');
+        return redirect('kategori-produk');
     }
 
     /**
@@ -94,5 +101,8 @@ class KategoriProdukController extends Controller
     public function destroy(KategoriProduk $kategoriProduk)
     {
         $kategoriProduk->delete();
+
+        Alert::success('Congrats', 'Berhasil menghapus kategori produk');
+        return redirect('kategori-produk');
     }
 }
