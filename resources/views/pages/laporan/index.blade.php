@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Laporan Transaksi')
 
 @section('content')
     <div class="pcoded-inner-content">
@@ -10,12 +10,12 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Users</h5>
+                            <h5 class="m-b-10">Laporan Transaksi</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Users</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Laporan Transaksi</a></li>
                         </ul>
                     </div>
                 </div>
