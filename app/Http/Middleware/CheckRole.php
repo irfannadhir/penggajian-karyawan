@@ -22,6 +22,7 @@ class CheckRole
             }
         }
 
-        return $next($request);
+        session()->flush();
+        return redirect()->back();
     }
 }

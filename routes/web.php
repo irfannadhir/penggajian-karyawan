@@ -12,10 +12,17 @@ Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
 
-Route::resource('user', UserController::class);
+Route::group([
+    'middleware' => ['auth', 'role:admin payroll']
+], function () {
 
-Route::resource('produk', ProdukController::class);
+    Route::get('/dashboard', [HomeController::class, 'index']);
 
-Route::resource('kategori-produk', KategoriProdukController::class);
+    Route::resource('user', UserController::class);
 
-Route::resource('payroll', PerhitunganPayrollController::class);
+    Route::resource('produk', ProdukController::class);
+
+    Route::resource('kategori-produk', KategoriProdukController::class);
+
+    Route::resource('payroll', PerhitunganPayrollController::class);
+});

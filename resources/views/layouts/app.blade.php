@@ -28,7 +28,7 @@
 
 <body>
     <!-- [ Pre-loader ] start -->
-    <div class="loader-bg">
+    <div class="loader-bg d-none">
         <div class="loader-track">
             <div class="loader-fill"></div>
         </div>
@@ -53,12 +53,12 @@
                         <label>Navigation</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
-                        class="nav-item pcoded-hasmenu active pcoded-trigger">
+                        class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                     class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="index.html" class="">Default</a></li>
-                            <li class="active"><a href="dashboard-ecommerce.html" class="">Ecommerce</a></li>
+                            <li class=""><a href="dashboard-ecommerce.html" class="">Ecommerce</a></li>
                             <li class=""><a href="dashboard-crm.html" class="">CRM</a></li>
                             <li class=""><a href="dashboard-analytics.html" class="">Analytics</a></li>
                             <li class=""><a href="dashboard-crypto.html" class="">Crypto<span
@@ -67,34 +67,32 @@
                         </ul>
                     </li>
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark"
-                        class="nav-item pcoded-hasmenu">
+                        class="nav-item pcoded-hasmenu {{ in_array(Request::segment(1), ['user', 'produk', 'kategori-produk']) ? 'active pcoded-trigger' : '' }}">
                         <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                    class="feather icon-layout"></i></span><span class="pcoded-mtext">Page
-                                layouts</span></a>
+                                    class="feather icon-layout"></i></span><span class="pcoded-mtext">Master
+                                Data</span></a>
                         <ul class="pcoded-submenu">
-                            <li class="pcoded-hasmenu"><a href="#!" class="">Vertical</a>
-                                <ul class="pcoded-submenu">
-                                    <li class=""><a href="layout-static.html" class=""
-                                            target="_blank">Static</a></li>
-                                    <li class=""><a href="layout-fixed.html" class=""
-                                            target="_blank">Fixed</a></li>
-                                    <li class=""><a href="layout-menu-fixed.html" class=""
-                                            target="_blank">Navbar fixed</a></li>
-                                    <li class=""><a href="layout-mini-menu.html" class=""
-                                            target="_blank">Collapse menu</a></li>
-                                </ul>
+                            <li class="{{ Request::segment(1) == 'user' ? 'active' : '' }}">
+                                <a href="{{ route('user.index') }}" class="">User</a>
                             </li>
-                            <li class=""><a href="layout-horizontal.html" class=""
-                                    target="_blank">Horizontal</a></li>
-                            <li class=""><a href="layout-box.html" class="" target="_blank">Box layout</a>
+                            <li class="{{ Request::segment(1) == 'kategori-produk' ? 'active' : '' }}">
+                                <a href="{{ route('kategori-produk.index') }}" class="">Kategori
+                                    Produk</a>
                             </li>
-                            <li class=""><a href="layout-rtl.html" class="" target="_blank">RTL</a></li>
-                            <li class=""><a href="layout-light.html" class="" target="_blank">Light
-                                    layout</a></li>
-                            <li class=""><a href="layout-dark.html" class="" target="_blank">Dark layout
-                                    <span class="pcoded-badge label label-danger">Hot</span></a></li>
-                            <li class=""><a href="layout-menu-icon.html" class="" target="_blank">Color
-                                    icon</a></li>
+                            <li class="{{ Request::segment(1) == 'produk' ? 'active' : '' }}">
+                                <a href="{{ route('produk.index') }}" class="">Produk</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark"
+                        class="nav-item pcoded-hasmenu {{ in_array(Request::segment(1), ['laporan']) ? 'active pcoded-trigger' : '' }}">
+                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i
+                                    class="feather icon-layout"></i></span><span class="pcoded-mtext">Laporan
+                            </span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="{{ Request::segment(1) == 'laporan-transaksi' ? 'active' : '' }}">
+                                <a href="/laporan" class="">Laporan Transaksi</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -145,66 +143,6 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
-                                class="icon feather icon-bell"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right notification">
-                            <div class="noti-head">
-                                <h6 class="d-inline-block m-b-0">Notifications</h6>
-                                <div class="float-right">
-                                    <a href="#!" class="m-r-10">mark as read</a>
-                                    <a href="#!">clear all</a>
-                                </div>
-                            </div>
-                            <ul class="noti-body">
-                                <li class="n-title">
-                                    <p class="m-b-0">NEW</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="{{ asset('assets/images/user/avatar-1.jpg') }}"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>John Doe</strong><span class="n-time text-muted"><i
-                                                        class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>New ticket Added</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="n-title">
-                                    <p class="m-b-0">EARLIER</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="{{ asset('assets/images/user/avatar-2.jpg') }}"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Joseph William</strong><span class="n-time text-muted"><i
-                                                        class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>Prchace New Theme and make payment</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="{{ asset('assets/images/user/avatar-3.jpg') }}"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i
-                                                        class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>currently login</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="noti-footer">
-                                <a href="#!">show all</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li><a href="#!" class="displayChatbox"><i class="icon feather icon-mail"></i></a></li>
-                <li>
                     <div class="dropdown drp-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon feather icon-settings"></i>
@@ -214,7 +152,7 @@
                                 <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" class="img-radius"
                                     alt="User-Profile-Image">
                                 <span>John Doe</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                <a href="javascript:void(0);" id="btn_logout" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
@@ -236,267 +174,6 @@
     </header>
     <!-- [ Header ] end -->
 
-    <!-- [ chat user list ] start -->
-    <section class="header-user-list">
-        <div class="h-list-header">
-            <div class="input-group">
-                <input type="text" id="search-friends" class="form-control" placeholder="Search Friend . . .">
-            </div>
-        </div>
-        <div class="h-list-body">
-            <a href="#!" class="h-close-text"><i class="feather icon-chevrons-right"></i></a>
-            <div class="main-friend-cont scroll-div">
-                <div class="main-friend-list">
-                    <div class="media userlist-box" data-id="1" data-status="online"
-                        data-username="Josephin Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="Generic placeholder image ">
-                            <div class="live-status">3</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                </small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-3.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-4.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="1" data-status="online"
-                        data-username="Josephin Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}"
-                                alt="Generic placeholder image ">
-                            <div class="live-status">3</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                </small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-3.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-4.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="1" data-status="online"
-                        data-username="Josephin Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}"
-                                alt="Generic placeholder image ">
-                            <div class="live-status">3</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                </small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-3.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-4.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="1" data-status="online"
-                        data-username="Josephin Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}"
-                                alt="Generic placeholder image ">
-                            <div class="live-status">3</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                </small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-3.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="Generic placeholder image">
-                            <div class="live-status">1</div>
-                        </a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                        </div>
-                    </div>
-                    <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                        <a class="media-left" href="#!"><img class="media-object img-radius"
-                                src="{{ asset('assets/images/user/avatar-4.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body">
-                            <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- [ chat user list ] end -->
-
-    <!-- [ chat message ] start -->
-    <section class="header-chat">
-        <div class="h-list-header">
-            <h6>Josephin Doe</h6>
-            <a href="#!" class="h-back-user-list"><i class="feather icon-chevron-left"></i></a>
-        </div>
-        <div class="h-list-body">
-            <div class="main-chat-cont scroll-div">
-                <div class="main-friend-chat">
-                    <div class="media chat-messages">
-                        <a class="media-left photo-table" href="#!"><img
-                                class="media-object img-radius img-radius m-t-5"
-                                src="{{ asset('assets/images/user/avatar-2.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body chat-menu-content">
-                            <div class="">
-                                <p class="chat-cont">hello Datta! Will you tell me something</p>
-                                <p class="chat-cont">about yourself?</p>
-                            </div>
-                            <p class="chat-time">8:20 a.m.</p>
-                        </div>
-                    </div>
-                    <div class="media chat-messages">
-                        <div class="media-body chat-menu-reply">
-                            <div class="">
-                                <p class="chat-cont">Ohh! very nice</p>
-                            </div>
-                            <p class="chat-time">8:22 a.m.</p>
-                        </div>
-                    </div>
-                    <div class="media chat-messages">
-                        <a class="media-left photo-table" href="#!"><img
-                                class="media-object img-radius img-radius m-t-5"
-                                src="{{ asset('assets/images/user/avatar-2.jpg') }}"
-                                alt="Generic placeholder image"></a>
-                        <div class="media-body chat-menu-content">
-                            <div class="">
-                                <p class="chat-cont">can you help me?</p>
-                            </div>
-                            <p class="chat-time">8:20 a.m.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="h-list-footer">
-            <div class="input-group">
-                <input type="file" class="chat-attach" style="display:none">
-                <a href="#!" class="input-group-prepend btn btn-success btn-attach">
-                    <i class="feather icon-paperclip"></i>
-                </a>
-                <input type="text" name="h-chat-text" class="form-control h-send-chat"
-                    placeholder="Write hear . . ">
-                <button type="submit" class="input-group-append btn-send btn btn-primary">
-                    <i class="feather icon-message-circle"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- [ chat message ] end -->
-
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -515,6 +192,19 @@
     <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
 
     @stack('js_resource')
+
+    <script>
+        $('#btn_logout').on('click', function() {
+            fetch('{{ route('logout') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                })
+                .then(res => window.location.replace('{{ route('login') }}'))
+                .catch(res => alert(res))
+        })
+    </script>
 </body>
 
 </html>

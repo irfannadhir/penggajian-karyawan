@@ -19,7 +19,7 @@ class CreateProduksTable extends Migration
             $table->string('nama_produk', 191);
             $table->enum('satuan', ['unit', 'set']);
             $table->string('warna', 191);
-            $table->enum('berat_produk', ['kg', 'ton']);
+            $table->decimal('berat_produk', 12, 0);
             $table->longText('keterangan');
         });
     }

@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-        if ($role == $this->role) {
+        if ($this->role == $role) {
             return true;
         }
         return false;

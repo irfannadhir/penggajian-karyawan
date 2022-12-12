@@ -1,73 +1,75 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<head>
+    <title>Halaman Login</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="CodedThemes" />
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    <!-- Favicon icon -->
+    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/fontawesome-all.min.css') }}">
+    <!-- animation css -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/animation/css/animate.min.css') }}">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <style>
+        .auth-bg-custom {
+            background-image: url('{{ asset('foto/WhatsApp Image 2022-12-09 at 21.25.41.jpeg') }}');
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            background-position: left;
+            background-repeat: no-repeat;
+        }
+    </style>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+</head>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+<body>
+    <div class="auth-wrapper aut-bg-img-side cotainer-fiuid align-items-stretch">
+        <div class="row align-items-center w-100 align-items-stretch bg-white">
+            <div class="d-none d-lg-flex col-lg-8 auth-bg-custom d-flex justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="text-dark my-5"><u>PT. Batavia Cyclindo Industri</u></h1>
                 </div>
+            </div>
+            <div class="col-lg-4 align-items-stret h-100 align-items-center d-flex justify-content-center">
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+                    <div class=" auth-content text-center">
+                        <p class="text-dark">Sistem Informasi Penggajian Karyawan Borongan
+                            Berdasarkan Hasil Produksi Pada Bagian Cushion PT. Batavia
+                            Cyclindo Industri</p>
+                        <div class="mb-4">
+                            <i class="feather icon-unlock auth-icon"></i>
+                        </div>
+                        <h3 class="mb-4">Login</h3>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="password" class="form-control" placeholder="password" name="password">
+                        </div>
+                        <button class="btn btn-primary shadow-2 mb-4" type="submit">Login</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+    <!-- Required Js -->
+    {{-- <script src="{{ asset('assets/js/vendor-all.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/pcoded.min.js') }}"></script> --}}
+
+</body>
+
+</html>

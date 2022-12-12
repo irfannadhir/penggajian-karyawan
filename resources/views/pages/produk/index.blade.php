@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kategori')
+@section('title', 'Produk')
 
 @section('content')
     <div class="pcoded-inner-content">
@@ -10,12 +10,12 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Kategori</h5>
+                            <h5 class="m-b-10">Produk</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Kategori</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Produk</a></li>
                         </ul>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Data Kategori</h5>
+                                <h5>Data produk</h5>
                             </div>
                             <div class="card-block">
                                 <button type="button" class="btn btn-primary d-flex ml-auto" data-toggle="modal"
@@ -39,25 +39,25 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nama Kategori</th>
+                                                <th>Nama produk</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($kategoris as $kategori)
+                                            @foreach ($produks as $produk)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $kategori->nama_kategori }}</td>
+                                                    <td>{{ $produk->nama_produk }}</td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#modalEdit{{ $kategori->id }}">
+                                                                data-target="#modalEdit{{ $produk->id }}">
                                                                 Edit
                                                             </button>
                                                             <button type="button" class="btn btn-danger btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#modalDelete{{ $kategori->id }}">
+                                                                data-target="#modalDelete{{ $produk->id }}">
                                                                 Hapus
                                                             </button>
                                                         </div>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <form action="{{ route('kategori-produk.store') }}" method="POST">
+    <form action="{{ route('produk.store') }}" method="POST">
         <div id="modalAdd" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalAddTitle"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -87,10 +87,8 @@
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="form group">
-                            <label for="nama_kategori">Nama</label>
-                            <input type="text" class="form-control" name="nama_kategori">
-                        </div>
+                        <label for="nama_produk">Nama</label>
+                        <input type="text" class="form-control" name="nama_produk">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -101,9 +99,9 @@
         </div>
     </form>
 
-    @foreach ($kategoris as $kategori)
-        <form action="{{ route('kategori-produk.update', $kategori->id) }}" method="POST">
-            <div id="modalEdit{{ $kategori->id }}" class="modal fade" tabindex="-1" role="dialog"
+    @foreach ($produks as $produk)
+        <form action="{{ route('produk.update', $produk->id) }}" method="POST">
+            <div id="modalEdit{{ $produk->id }}" class="modal fade" tabindex="-1" role="dialog"
                 aria-labelledby="modalEditTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     @csrf
@@ -116,9 +114,9 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="nama_kategori">Nama</label>
-                                <input type="text" class="form-control" name="nama_kategori"
-                                    value="{{ $kategori->nama_kategori }}">
+                                <label for="nama_produk">Nama</label>
+                                <input type="text" class="form-control" name="nama_produk"
+                                    value="{{ $produk->nama_produk }}">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -130,8 +128,8 @@
             </div>
         </form>
 
-        <form action="{{ route('kategori-produk.destroy', $kategori->id) }}" method="POST">
-            <div id="modalDelete{{ $kategori->id }}" class="modal fade" tabindex="-1" role="dialog"
+        <form action="{{ route('produk.destroy', $produk->id) }}" method="POST">
+            <div id="modalDelete{{ $produk->id }}" class="modal fade" tabindex="-1" role="dialog"
                 aria-labelledby="modalDeleteTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     @csrf
