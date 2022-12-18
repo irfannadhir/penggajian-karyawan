@@ -11,4 +11,9 @@ class Produk extends Model
     protected $guarded = [];
     public $timestamps = false;
     protected $table = 'produk';
+
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriProduk::class, 'kategori_produk_id', 'id');
+    }
 }

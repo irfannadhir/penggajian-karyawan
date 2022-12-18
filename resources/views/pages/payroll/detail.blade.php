@@ -15,7 +15,8 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Data Payroll</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('payroll.index') }}">Data Payroll</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Detail Payroll</a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,35 +32,40 @@
                                 <h5>Data Payroll</h5>
                             </div>
                             <div class="card-block">
-                                @if (auth()->user()->role == 'admin payroll')
-                                    <a href="{{ route('payroll.create') }}" class="btn btn-primary ml-auto">Perhitungan
-                                        Payroll</a>
-                                @endif
+                                <p><b>Nama :</b> {{ $detail_payroll[0]->karyawan->name ?? '' }}</p>
+                                <p><b>NIK :</b> {{ $detail_payroll[0]->karyawan->nik ?? '' }}</p>
+                                <p><b>Jenis Kelamin :</b> {{ $detail_payroll[0]->karyawan->jenis_kelamin ?? '' }}</p>
+                                <p><b>Alamat :</b> {{ $detail_payroll[0]->karyawan->alamat ?? '' }}</p>
                                 <div class="table-responsive">
                                     <table id="key-act-button" class="display table nowrap table-striped table-hover"
                                         style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nama Karyawan</th>
-                                                <th>Bulan</th>
-                                                <th>Total Gaji</th>
+                                                <th>Tanggal Produksi</th>
+                                                <th>Total</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($perhitungan_payrolls as $perhitungan_payroll)
+                                            @foreach ($detail_payroll as $detail)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $perhitungan_payroll->karyawan->name ?? '' }}</td>
-                                                    <td>{{ $perhitungan_payroll->month }}</td>
-                                                    <td>Rp. {{ number_format($perhitungan_payroll->total_gaji) }}</td>
+                                                    <td>{{ $detail->tanggal_produksi }}</td>
+                                                    <td>Rp. {{ number_format($detail->total) }}</td>
                                                     <td>
                                                         <div class="btn-group">
-                                                            <a href="{{ route('payroll.show', $perhitungan_payroll->karyawan_id) }}"
+                                                            <a href="{{ url('payroll/detail-payroll/' . $detail->id) }}"
                                                                 class="btn btn-primary btn-sm">
                                                                 Detail
                                                             </a>
+                                                            @if (auth()->user()->role == 'admin payroll')
+                                                                <button type="button" class="btn btn-danger btn-sm"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalDelete{{ $detail->id }}">
+                                                                    Hapus
+                                                                </button>
+                                                            @endif
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -75,35 +81,9 @@
         </div>
     </div>
 
-    {{-- @foreach ($perhitungan_payrolls as $perhitungan_payroll)
-        <form action="{{ route('user.update', $perhitungan_payroll->id) }}" method="POST">
-            <div id="modalEdit{{ $perhitungan_payroll->id }}" class="modal fade" tabindex="-1" role="dialog"
-                aria-labelledby="modalEditTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalEditTitle">Edit Data</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <label for="name">Nama</label>
-                            <input type="text" class="form-control" name="name"
-                                value="{{ $perhitungan_payroll->name }}">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-
-        <form action="{{ route('user.destroy', $perhitungan_payroll->id) }}" method="POST">
-            <div id="modalDelete{{ $perhitungan_payroll->id }}" class="modal fade" tabindex="-1" role="dialog"
+    @foreach ($detail_payroll as $detail)
+        <form action="{{ route('payroll.destroy', $detail->id) }}" method="POST">
+            <div id="modalDelete{{ $detail->id }}" class="modal fade" tabindex="-1" role="dialog"
                 aria-labelledby="modalDeleteTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     @csrf
@@ -125,7 +105,7 @@
                 </div>
             </div>
         </form>
-    @endforeach --}}
+    @endforeach
 @endsection
 
 @push('css_resource')

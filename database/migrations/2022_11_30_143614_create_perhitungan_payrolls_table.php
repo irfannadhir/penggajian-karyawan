@@ -13,9 +13,11 @@ class CreatePerhitunganPayrollsTable extends Migration
      */
     public function up()
     {
-        Schema::create('perhitungan_payrolls', function (Blueprint $table) {
+        Schema::create('perhitungan_payroll', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->date('tanggal_produksi');
+            $table->foreignId('karyawan_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->decimal('total', 12, 0);
         });
     }
 
@@ -26,6 +28,6 @@ class CreatePerhitunganPayrollsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perhitungan_payrolls');
+        Schema::dropIfExists('perhitungan_payroll');
     }
 }

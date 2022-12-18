@@ -71,7 +71,7 @@ class UserController extends Controller
         ]);
 
         Alert::success('Congrats', 'Berhasil menambahkan user');
-        return redirect('users');
+        return redirect('user');
     }
 
     /**

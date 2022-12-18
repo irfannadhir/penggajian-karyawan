@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriProduk;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -10,8 +11,9 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $produks = Produk::all();
-        return view('pages.produk.index', compact('produks'));
+        $produks = Produk::with('kategori')->get();
+        $kategori = KategoriProduk::all();
+        return view('pages.produk.index', compact('produks', 'kategori'));
     }
 
     public function store(Request $request)
@@ -22,6 +24,8 @@ class ProdukController extends Controller
             'satuan'             => 'required',
             'warna'              => 'required',
             'berat_produk'       => 'required',
+            'satuan_produk'      => 'required',
+            'upah_per_produk'    => 'required',
             'keterangan'         => 'required',
         ]);
 
@@ -31,6 +35,8 @@ class ProdukController extends Controller
             'satuan'             => $request->satuan,
             'warna'              => $request->warna,
             'berat_produk'       => $request->berat_produk,
+            'satuan_produk'      => $request->satuan_produk,
+            'upah_per_produk'    => $request->upah_per_produk,
             'keterangan'         => $request->keterangan,
         ]);
 
@@ -46,6 +52,8 @@ class ProdukController extends Controller
             'satuan'             => 'required',
             'warna'              => 'required',
             'berat_produk'       => 'required',
+            'satuan_produk'      => 'required',
+            'upah_per_produk'    => 'required',
             'keterangan'         => 'required',
         ]);
 
@@ -55,6 +63,8 @@ class ProdukController extends Controller
             'satuan'             => $request->satuan,
             'warna'              => $request->warna,
             'berat_produk'       => $request->berat_produk,
+            'satuan_produk'      => $request->satuan_produk,
+            'upah_per_produk'    => $request->upah_per_produk,
             'keterangan'         => $request->keterangan,
         ]);
 
@@ -62,7 +72,7 @@ class ProdukController extends Controller
         return redirect('produk');
     }
 
-    public function delete(Produk $produk)
+    public function destroy(Produk $produk)
     {
         $produk->delete();
         Alert::success('Congrats', 'Berhasil menghapus produk');

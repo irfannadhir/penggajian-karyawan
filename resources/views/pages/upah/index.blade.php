@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Besaran Upah')
 
 @section('content')
     <div class="pcoded-inner-content">
@@ -10,12 +10,12 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Users</h5>
+                            <h5 class="m-b-10">Besaran Upah</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Users</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Besaran Upah</a></li>
                         </ul>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Data User</h5>
+                                <h5>Data Besaran Upah</h5>
                             </div>
                             <div class="card-block">
                                 <button type="button" class="btn btn-primary d-flex ml-auto" data-toggle="modal"
@@ -39,27 +39,29 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nama User</th>
-                                                <th>Email</th>
+                                                <th>Nama Produk</th>
+                                                <th>Besaran Upah</th>
+                                                <th>Keterangan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $user)
+                                            @foreach ($besaran_upahs as $besaran_upah)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $besaran_upah->produk ?? $besaran_upah->nama_produk }}</td>
+                                                    <td>{{ $besaran_upah->besaran_upah }}</td>
+                                                    <td>{{ $besaran_upah->keterangan }}</td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#modalEdit{{ $user->id }}">
+                                                                data-target="#modalEdit{{ $besaran_upah->id }}">
                                                                 Edit
                                                             </button>
                                                             <button type="button" class="btn btn-danger btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#modalDelete{{ $user->id }}">
+                                                                data-target="#modalDelete{{ $besaran_upah->id }}">
                                                                 Hapus
                                                             </button>
                                                         </div>
@@ -101,9 +103,9 @@
         </div>
     </form>
 
-    @foreach ($users as $user)
-        <form action="{{ route('user.update', $user->id) }}" method="POST">
-            <div id="modalEdit{{ $user->id }}" class="modal fade" tabindex="-1" role="dialog"
+    @foreach ($besaran_upahs as $besaran_upah)
+        <form action="{{ route('user.update', $besaran_upah->id) }}" method="POST">
+            <div id="modalEdit{{ $besaran_upah->id }}" class="modal fade" tabindex="-1" role="dialog"
                 aria-labelledby="modalEditTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     @csrf
@@ -116,7 +118,7 @@
                         </div>
                         <div class="modal-body">
                             <label for="name">Nama</label>
-                            <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                            <input type="text" class="form-control" name="name" value="{{ $besaran_upah->name }}">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -127,8 +129,8 @@
             </div>
         </form>
 
-        <form action="{{ route('user.destroy', $user->id) }}" method="POST">
-            <div id="modalDelete{{ $user->id }}" class="modal fade" tabindex="-1" role="dialog"
+        <form action="{{ route('user.destroy', $besaran_upah->id) }}" method="POST">
+            <div id="modalDelete{{ $besaran_upah->id }}" class="modal fade" tabindex="-1" role="dialog"
                 aria-labelledby="modalDeleteTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     @csrf

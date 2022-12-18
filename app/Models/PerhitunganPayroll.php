@@ -13,4 +13,14 @@ class PerhitunganPayroll extends Model
 
     protected $guarded = [];
     protected $table = 'perhitungan_payroll';
+
+    public function karyawan()
+    {
+        return $this->belongsTo(User::class, 'karyawan_id', 'id');
+    }
+
+    public function detail()
+    {
+        return $this->hasMany(DetailPayroll::class, 'payrol_id');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBesaranUpahTable extends Migration
+class CreateDetailPayrollsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateBesaranUpahTable extends Migration
      */
     public function up()
     {
-        Schema::create('besaran_upah', function (Blueprint $table) {
+        Schema::create('detail_payroll', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('payrol_id')->references('id')->on('perhitungan_payroll')->cascadeOnDelete();
             $table->foreignId('produk_id')->references('id')->on('produk')->cascadeOnDelete();
-            $table->decimal('besaran_upah', 12, 0);
-            $table->string('keterangan', 191)->nullable();
+            $table->decimal('qty', 12, 0);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateBesaranUpahTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('besaran_upah');
+        Schema::dropIfExists('detail_payroll');
     }
 }
