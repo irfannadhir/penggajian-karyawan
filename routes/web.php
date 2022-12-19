@@ -10,10 +10,17 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', fn () => redirect('/login'));
 
 Auth::routes();
+
+// Route::group([
+//     'middleware' => ['auth', 'role:admin payroll,karyawan borongan,keuangan,admin produksi']
+// ], function () {
+
+//     Route::get('setting', [HomeController::class, 'setting']);
+//     Route::post('setting', [HomeController::class, 'update_setting']);
+// });
 
 Route::group([
     'middleware' => ['auth', 'role:admin payroll']

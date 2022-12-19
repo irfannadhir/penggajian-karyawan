@@ -30,7 +30,6 @@ class ReportController extends Controller
 
         $admin_payroll = User::where('role', 'admin payroll')->first();
 
-
         return view('pages.laporan.print', compact('payroll', 'tanggal_awal', 'tanggal_akhir', 'admin_payroll'));
     }
 }

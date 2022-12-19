@@ -150,10 +150,11 @@
                                 </a>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i>
-                                        Settings</a></li>
-                                <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i>
-                                        Profile</a></li>
+                                {{-- <li><a href="{{ url('setting') }}" class="dropdown-item"><i
+                                            class="feather icon-settings"></i>
+                                        Settings</a></li> --}}
+                                {{-- <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i>
+                                        Profile</a></li> --}}
                             </ul>
                         </div>
                     </div>
